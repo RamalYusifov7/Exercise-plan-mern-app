@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAddWorkoutMutation } from '../features/workouts/workoutApi'
 import { clearInputs, handleChange } from '../features/workouts/workoutSlice'
@@ -10,7 +9,7 @@ function WorkoutFrom() {
 
   const dispatch = useDispatch()
   const { title, reps, load } = useSelector(store => store.workouts)
-
+  const { user } = useSelector(store => store.users)
 
   const inputChange = (e) => {
     const name = e.target.name
@@ -19,11 +18,15 @@ function WorkoutFrom() {
   }
 
   const handleSubmit = (e) => {
+    if (!user) {
+      console.log("no user");
+      return
+    }
     e.preventDefault()
     addWorkout({ title, reps, load })
     dispatch(clearInputs())
   }
-  
+
   return (
     <form className="create" onSubmit={handleSubmit} >
       <h3>Add a New Workout</h3>

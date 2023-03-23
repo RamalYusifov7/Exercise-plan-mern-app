@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ msg: "Password doesn't match" })
     }
 
-    res.status(200).json({email,token})
+    res.status(200).json({ email, token })
 }
 
 

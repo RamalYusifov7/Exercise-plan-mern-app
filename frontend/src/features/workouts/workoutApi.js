@@ -1,10 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+import { rootApi } from '../api/apiSlice'
 
 
-export const workoutApi = createApi({
-    reducerPath: "workout",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3500/api' }),
-    tagTypes: ["Workout"],
+export const workoutApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         getWorkouts: builder.query({
             query: () => "/workouts",
@@ -12,7 +10,7 @@ export const workoutApi = createApi({
         }),
         addWorkout: builder.mutation({
             query: (workout) => ({
-                url: "/workouts",
+                url: "workouts",
                 method: "POST",
                 body: workout
             }),
@@ -20,7 +18,7 @@ export const workoutApi = createApi({
         }),
         deleteWorkout: builder.mutation({
             query: (id) => ({
-                url: `/workouts/${id}`,
+                url: `workouts/${id}`,
                 method: "DELETE",
                 body: id
             }),
