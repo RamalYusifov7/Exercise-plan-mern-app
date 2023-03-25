@@ -12,6 +12,6 @@ export const rootApi = createApi({
             return headers;
         },
     }),
-    tagTypes: ["User", "Workouts"],
+    tagTypes: ["Workout"],
     endpoints: (builder) => ({}),
 });

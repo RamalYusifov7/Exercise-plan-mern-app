@@ -11,9 +11,13 @@ const workoutSchema = mongoose.Schema({
     load: {
         type: Number,
         required: true
+    },
+    user_id: {
+        type: String,
+        required: true
     }
-}, { timestamps:true })
+}, { timestamps: true })
 
 
-module.exports=mongoose.model("Workouts", workoutSchema)
+module.exports = mongoose.model("Workouts", workoutSchema)
 

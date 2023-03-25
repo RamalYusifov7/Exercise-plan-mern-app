@@ -1,6 +1,4 @@
-
 import { rootApi } from '../api/apiSlice'
-
 
 export const workoutApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -10,7 +8,7 @@ export const workoutApi = rootApi.injectEndpoints({
         }),
         addWorkout: builder.mutation({
             query: (workout) => ({
-                url: "workouts",
+                url: "/workouts",
                 method: "POST",
                 body: workout
             }),
