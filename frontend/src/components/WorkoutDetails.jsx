@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDeleteWorkoutMutation } from '../features/workouts/workoutApi'
+import {AiFillDelete} from "react-icons/ai"
 import moment from "moment"
 
 function WorkoutDetails({ _id: id, title, reps, load, createdAt }) {
@@ -14,7 +15,7 @@ function WorkoutDetails({ _id: id, title, reps, load, createdAt }) {
       <p><strong>Load (kg): </strong>{load}</p>
       <p><strong>Number of reps: </strong>{reps}</p>
       <p>{moment().startOf(createdAt).fromNow()}</p>
-      <span className="material-symbols-outlined" onClick={() => handleDelete(id)} >delete</span>
+      <span  onClick={() => handleDelete(id)} ><AiFillDelete/></span>
     </div>
   )
 }

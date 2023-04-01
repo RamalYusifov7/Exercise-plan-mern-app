@@ -8,6 +8,7 @@ export const useRegister = () => {
     const dispatch = useDispatch()
      const navigate=useNavigate()
 
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registerUser, object] = useRegisterUserMutation();
@@ -15,7 +16,7 @@ export const useRegister = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        registerUser({ email, password });
+        registerUser({ name,email, password });
     };
 
     useEffect(() => {
@@ -26,6 +27,8 @@ export const useRegister = () => {
     }, [user])
 
     return {
+        name,
+        setName,
         email,
         password,
         setEmail,

@@ -2,6 +2,8 @@ import { useRegister } from "../hooks/useRegister";
 
 function Register() {
   const {
+    name,
+    setName,
     email,
     password,
     setEmail,
@@ -16,7 +18,12 @@ function Register() {
   return (
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
-
+      <label>Name:</label>
+      <input
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+      />
       <label>Email address:</label>
       <input
         type="email"

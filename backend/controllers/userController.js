@@ -7,7 +7,7 @@ const createToken = (_id) => {   //
 }
 
 const registerUser = async (req, res) => {
-    const { email, password } = req.body
+    const { name, email, password } = req.body
 
     const exists = await User.findOne({ email })
     if (exists) {
@@ -19,11 +19,11 @@ const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashed = await bcrypt.hash(password, salt)
 
-    const user = await User.create({ email, password: hashed })
+    const user = await User.create({ name, email, password: hashed })
     const token = createToken(user._id)
 
     if (user) {
-        return res.status(200).json({ email, token })
+        return res.status(200).json({ name, email, token })
     } else {
         return res.status(400).json({ msg: "inavlid user" })
     }
@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ msg: "Fill out all the fields" })
     }
     const user = await User.findOne({ email })
-
+    const { name } = user
     if (!user) {
         return res.status(400).json({ msg: "Incorrect email" })
     }
@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
         return res.status(400).json({ msg: "Password doesn't match" })
     }
 
-    res.status(200).json({ email, token })
+    res.status(200).json({ name, email, token })
 }
 
 

@@ -4,7 +4,7 @@ export const workoutApi = rootApi.injectEndpoints({
     endpoints: (builder) => ({
         getWorkouts: builder.query({
             query: () => "/workouts",
-            providesTags: ["Workout"]
+            providesTags: ["Workout"],
         }),
         addWorkout: builder.mutation({
             query: (workout) => ({
@@ -26,3 +26,4 @@ export const workoutApi = rootApi.injectEndpoints({
 })
 
 export const { useGetWorkoutsQuery, useAddWorkoutMutation, useDeleteWorkoutMutation } = workoutApi
+

@@ -1,12 +1,16 @@
-import { WorkoutDetails, WorkoutFrom } from '../components';
 
+import { WorkoutDetails, WorkoutFrom } from '../components';
 import { useGetWorkoutsQuery } from '../features/workouts/workoutApi'
+import Loading from '../components/Loading';
 
 function Home() {
-  const { data: workouts, isLoading } = useGetWorkoutsQuery()
+
+  const { data: workouts = [], isLoading } = useGetWorkoutsQuery();
 
   if (isLoading) {
-    return <div>loading...</div>
+    return <div className='loader-wrapper'>
+    <span className='loader'></span>
+</div>
   }
   return (
     <div className="home">
